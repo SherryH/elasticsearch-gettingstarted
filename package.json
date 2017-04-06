@@ -1,0 +1,25 @@
+{
+  "name": "elasticsearch-gettingstarted",
+  "version": "1.0.0",
+  "description": "This repository contains files related to the Elastic Search tutorial from [SitePoint](https://www.sitepoint.com/search-engine-node-elasticsearch/) and [Compose](https://www.compose.com/articles/getting-started-with-elasticsearch-and-node/)",
+  "main": "index.js",
+  "scripts": {
+    "start:db": "/usr/local/Cellar/elasticsearch/5.3.0/bin/elasticsearch",
+    "start:kibana": "/usr/local/Cellar/kibana/5.3.0/bin/kibana",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SherryH/elasticsearch-gettingstarted.git"
+  },
+  "author": "SherryH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SherryH/elasticsearch-gettingstarted/issues"
+  },
+  "homepage": "https://github.com/SherryH/elasticsearch-gettingstarted#readme",
+  "dependencies": {
+    "elasticsearch": "^13.0.0-rc2",
+    "express": "^4.15.2"
+  }
+}
