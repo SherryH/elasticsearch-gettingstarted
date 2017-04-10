@@ -13,15 +13,35 @@ client.cluster.health({}, function(err, res, status) {
 
 //NOTE: Document> index API does not create a new index, it updates JSON in a specific index
 //Indices> Create API creates a new index
-client.indices.create({
-  index: 'gov'
-}, function(err, res){
-  if (err) {
-    console.error('ERROR creating index', err);
-  } else {
-    console.log('index created', res);
-  }
-});
+// call create.js to create index
+// > node create
 
 
 // constituencies.json
+//add 1 data into the index
+// client.index({
+//   index: 'gov',
+//   type: 'constituencies',
+//   id: '1',
+//   body: {
+//     "PANO": 7,
+//     "ConstituencyName": "Aldershot",
+//     "ConstituencyID": "E14000530",
+//     "ConstituencyType": "Borough",
+//     "Electorate": 72430,
+//     "ValidVotes": 46191,
+//     "field7": "",
+//     "RegionID": "E12000008",
+//     "County": "Hampshire",
+//     "Region": "South East",
+//     "Country": "England"
+//   }
+// });
+
+
+//check the num of documents in the index
+//> node info
+
+// bulk input data into the index
+//> node constituencies.js
+
