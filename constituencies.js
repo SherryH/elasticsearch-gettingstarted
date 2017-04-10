@@ -4,7 +4,7 @@ const client = require('./connection.js').elasticClient;
 // the body has a structure of
 // body: [
 //     // action description
-//     { index:  { _index: 'giv', _type: 'constituencies', _id: 1 } },
+//     { index:  { _index: 'gov', _type: 'constituencies', _id: 1 } },
 //      // the document to index
 //     { "ConstituencyName": "Aldershot", "ConstituencyID": "E14000530" ... }
 // ];
@@ -12,18 +12,34 @@ const client = require('./connection.js').elasticClient;
 const inputFile = require('./data/constituencies.json');
 //console.log('isArray?', Array.isArray(inputFile)); the inputFile is an Array
 const body = [];
-for (var data of inputFile) {
-  body.push({
-    index:  { _index: 'gov', _type: 'constituencies', _id: data.PANO }
-  }, data);
-}
+
+
+const bulkCreate = (callback) => {
+  for (var data of inputFile) {
+    body.push({
+      index:  { _index: 'gov', _type: 'constituencies', _id: data.PANO }
+    }, data);
+  }
+  callback(body);
+};
+
+const bulkDelete = (callback) => {
+  inputFile.forEach((input) => {
+    body.push({
+      delete: { _index: 'gov', _type: 'constituencies', _id: input.PANO }
+    });
+  });
+  callback(body);
+};
+
 // call the bulk({body:[]},callback) to pass data to the index
-client.bulk({
-  body,
-}, function(err,res) {
-  console.log('finish bulk upload', res);
-});
+const bulkActionCallback = (body) => {
+  client.bulk({
+    body,
+  }, function(err,res) {
+    console.log('finish bulk action', res);
+  });
+};
 
-// const bulkDelete = () => {
-
-// };
+bulkCreate(bulkActionCallback);
+bulkDelete(bulkActionCallback);
