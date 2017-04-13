@@ -8,6 +8,7 @@ const client = require('./connection.js').elasticClient;
 //      // the document to index
 //     { "ConstituencyName": "Aldershot", "ConstituencyID": "E14000530" ... }
 // ];
+// https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html
 
 const inputFile = require('./data/constituencies.json');
 //console.log('isArray?', Array.isArray(inputFile)); the inputFile is an Array
@@ -42,4 +43,4 @@ const bulkActionCallback = (body) => {
 };
 
 bulkCreate(bulkActionCallback);
-bulkDelete(bulkActionCallback);
+// bulkDelete(bulkActionCallback);
